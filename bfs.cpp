@@ -34,7 +34,7 @@ int main()
 
         Q.pop();
 
-        cout << l << endl;
+        cout << l << " ";
 
         vector<int> :: iterator it;
         for(it = Matrix[l].begin(); it != Matrix[l].end(); it++) {
@@ -48,3 +48,14 @@ int main()
 
     return 0;
 }
+
+/*
+7 7
+1 2
+1 3
+2 4
+2 5
+2 6
+2 7
+7 3
+*/
