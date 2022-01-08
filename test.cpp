@@ -1,51 +1,50 @@
 #include<iostream>
 #include<vector>
 #include<queue>
+#include<set>
 using namespace std;
-const int N = 1000;
-
+const int inf = 1e7;
 
 int main()
 {
-    int node, edge;
-    cin >> node >> edge;
+    int n, e;
+    cin >> n >> e;
+    
+    vector<vector<int>> mat;
+    vector  indeg(n, 0);
 
-    vector<int> mat[N];
-    bool vis[N];
-
-    for(int i=0; i<N; i++) {
-        vis[i] = 0;
-    }
-
-    for(int i=0; i<edge; i++) {
-        int u, v;
+    for(int i=0; i<e; i++) {
+        int u, v, s;
         cin >> u >> v;
-
-        mat[u].push_back(v);
-        mat[v].push_back(u);
+        matrix[u].push_back(v);
+        indeg[v]++;
     }
 
     queue<int> q;
-    int s;
-    cin >> s;
-    q.push(s);
-    vis[s] = true;
+    for(int i=0; i<n; i++) {
+        if(indeg[i] == 0) {
+            q.push(i);
+        }
+    }
+
+    int count=0;
 
     while(! q.empty())
     {
-        int l = q.front();
+        count++;
+        int x = q.front();
         q.pop();
-        cout << l << endl;
+        cout << x << " ";
 
-        vector<int> :: iterator it;
-
-        for(it = mat[l].begin(); it != mat[l].end(); it++){
-            if(!vis[*it]) {
-                vis[*it] = 1;
-                q.push(*it);
+        for(auto it : mat[x]) {
+            indeg[it]--;
+            if(indeg[it] == 0) {
+                q.push(it);
             }
         }
     }
+
+    
 
     return 0;
 }
